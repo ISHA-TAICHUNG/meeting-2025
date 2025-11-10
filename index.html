@@ -153,6 +153,16 @@
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .scroll-indicator:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+        
+        .scroll-indicator:active {
+            transform: translateX(-50%) scale(0.95);
         }
         
         @keyframes bounce {
@@ -429,6 +439,159 @@
             bottom: 20%;
             left: -150px;
         }
+        
+        /* 快速導航選單 */
+        .quick-menu {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            max-width: 90%;
+            width: 500px;
+            max-height: 80vh;
+            overflow: hidden;
+        }
+        
+        .quick-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .quick-menu-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .quick-menu-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        
+        .close-menu {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .close-menu:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .quick-menu-content {
+            padding: 1rem;
+            max-height: calc(80vh - 80px);
+            overflow-y: auto;
+        }
+        
+        .quick-menu-content a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            border-left: 4px solid transparent;
+        }
+        
+        .quick-menu-content a:hover {
+            background: var(--light-bg);
+            border-left-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .quick-menu {
+                width: 90%;
+            }
+            
+            .quick-menu-header h3 {
+                font-size: 1.1rem;
+            }
+            
+            .quick-menu-content a {
+                font-size: 0.95rem;
+                padding: 0.8rem 1rem;
+            }
+        }
+        
+        /* 各項安排卡片 */
+        .arrangement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            text-align: center;
+            display: block;
+            border: 2px solid transparent;
+        }
+        
+        .arrangement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .arrangement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .arrangement-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .arrangement-card p {
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -460,10 +623,31 @@
                 共創未來 · 策略啟航
             </div>
         </div>
-        <div class="scroll-indicator">
+        <div class="scroll-indicator" onclick="toggleMenu()">
             <span></span>
         </div>
     </section>
+    
+    <!-- 快速導航選單 -->
+    <div id="quickMenu" class="quick-menu">
+        <div class="quick-menu-header">
+            <h3>📋 快速導航</h3>
+            <button class="close-menu" onclick="toggleMenu()">✕</button>
+        </div>
+        <div class="quick-menu-content">
+            <a href="#cover" onclick="toggleMenu()">🏠 首頁</a>
+            <a href="#schedule" onclick="toggleMenu()">📅 活動期程</a>
+            <a href="#environment" onclick="toggleMenu()">🏔️ 泰安觀止環境及設施介紹</a>
+            <a href="#transportation" onclick="toggleMenu()">🚌 車次安排</a>
+            <a href="#rooms" onclick="toggleMenu()">🛏️ 房間安排</a>
+            <a href="#seating" onclick="toggleMenu()">🍽️ 桌次安排</a>
+            <a href="#personnel" onclick="toggleMenu()">👥 各處站人員及編號</a>
+            <a href="#qrcode" onclick="toggleMenu()">📱 會議社群 QR Code</a>
+        </div>
+    </div>
+    
+    <!-- 選單遮罩 -->
+    <div id="menuOverlay" class="menu-overlay" onclick="toggleMenu()"></div>
 
     <!-- 裝飾圓圈 -->
     <div class="decorative-circle circle-1"></div>
@@ -478,6 +662,33 @@
             <div class="schedule-placeholder">
                 📅 活動期程待確認<br>
                 詳細時程將於近期公告
+            </div>
+        </section>
+
+        <!-- 各項安排總覽 -->
+        <section id="arrangement" class="section">
+            <h2 class="section-title">各項安排</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <a href="#transportation" class="arrangement-card">
+                    <div class="arrangement-icon">🚌</div>
+                    <h3>車次安排</h3>
+                    <p>集合時間與地點</p>
+                </a>
+                <a href="#rooms" class="arrangement-card">
+                    <div class="arrangement-icon">🛏️</div>
+                    <h3>房間安排</h3>
+                    <p>住宿分配表</p>
+                </a>
+                <a href="#seating" class="arrangement-card">
+                    <div class="arrangement-icon">🍽️</div>
+                    <h3>桌次安排</h3>
+                    <p>用餐座位配置</p>
+                </a>
+                <a href="#personnel" class="arrangement-card">
+                    <div class="arrangement-icon">👥</div>
+                    <h3>人員編號</h3>
+                    <p>各處站名單</p>
+                </a>
             </div>
         </section>
 
@@ -600,6 +811,14 @@
     </div>
 
     <script>
+        // 選單切換功能
+        function toggleMenu() {
+            const menu = document.getElementById('quickMenu');
+            const overlay = document.getElementById('menuOverlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+        
         // 平滑滾動
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
