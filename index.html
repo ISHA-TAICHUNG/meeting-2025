@@ -1036,13 +1036,13 @@
                 <span class="tab-icon">📅</span>
                 <span class="tab-text">活動期程</span>
             </button>
-            <button class="tab-btn" onclick="switchTab('environment')">
-                <span class="tab-icon">🏔️</span>
-                <span class="tab-text">環境介紹</span>
-            </button>
             <button class="tab-btn" onclick="switchTab('transport')">
-                <span class="tab-icon">🚗</span>
-                <span class="tab-text">交通住宿</span>
+                <span class="tab-icon">🚌</span>
+                <span class="tab-text">車次安排</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('rooms')">
+                <span class="tab-icon">🛏️</span>
+                <span class="tab-text">房間安排</span>
             </button>
             <button class="tab-btn" onclick="switchTab('dining')">
                 <span class="tab-icon">🍽️</span>
@@ -1052,13 +1052,17 @@
                 <span class="tab-icon">👥</span>
                 <span class="tab-text">人員資訊</span>
             </button>
-            <button class="tab-btn" onclick="switchTab('info')">
-                <span class="tab-icon">📱</span>
-                <span class="tab-text">活動資訊</span>
+            <button class="tab-btn" onclick="switchTab('environment')">
+                <span class="tab-icon">🏔️</span>
+                <span class="tab-text">環境介紹</span>
             </button>
             <button class="tab-btn" onclick="switchTab('notice')">
                 <span class="tab-icon">⚠️</span>
                 <span class="tab-text">住房須知</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('info')">
+                <span class="tab-icon">📱</span>
+                <span class="tab-text">活動資訊</span>
             </button>
         </div>
     </div>
@@ -1159,26 +1163,27 @@
             </div>
         </div>
 
-        <!-- 交通住宿 -->
+        <!-- 車次安排 -->
         <div id="transport-tab" class="tab-content">
             <div class="content-section">
                 <section class="section">
-                    <h2 class="section-title">交通住宿安排</h2>
-                    
-                    <div style="margin-bottom: 3rem;">
-                        <h3 style="color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1.5rem;">🚌 車次安排</h3>
-                        <div class="schedule-placeholder">
-                            車次安排待確認<br>
-                            集合時間與地點將另行通知
-                        </div>
+                    <h2 class="section-title">車次安排</h2>
+                    <div class="schedule-placeholder">
+                        🚌 車次安排待確認<br>
+                        集合時間與地點將另行通知
                     </div>
-                    
-                    <div>
-                        <h3 style="color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1.5rem;">🛏️ 房間安排</h3>
-                        <div class="schedule-placeholder">
-                            房間安排待確認<br>
-                            住宿分配表將於近期公告
-                        </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- 房間安排 -->
+        <div id="rooms-tab" class="tab-content">
+            <div class="content-section">
+                <section class="section">
+                    <h2 class="section-title">房間安排</h2>
+                    <div class="schedule-placeholder">
+                        🛏️ 房間安排待確認<br>
+                        住宿分配表將於近期公告
                     </div>
                 </section>
             </div>
@@ -1506,12 +1511,13 @@
         <div class="quick-menu-content">
             <button onclick="switchTab('home'); toggleMenu();">🏠 首頁</button>
             <button onclick="switchTab('schedule'); toggleMenu();">📅 活動期程</button>
-            <button onclick="switchTab('environment'); toggleMenu();">🏔️ 環境介紹</button>
-            <button onclick="switchTab('transport'); toggleMenu();">🚗 交通住宿</button>
+            <button onclick="switchTab('transport'); toggleMenu();">🚌 車次安排</button>
+            <button onclick="switchTab('rooms'); toggleMenu();">🛏️ 房間安排</button>
             <button onclick="switchTab('dining'); toggleMenu();">🍽️ 用餐安排</button>
             <button onclick="switchTab('personnel'); toggleMenu();">👥 人員資訊</button>
-            <button onclick="switchTab('info'); toggleMenu();">📱 活動資訊</button>
+            <button onclick="switchTab('environment'); toggleMenu();">🏔️ 環境介紹</button>
             <button onclick="switchTab('notice'); toggleMenu();">⚠️ 住房須知</button>
+            <button onclick="switchTab('info'); toggleMenu();">📱 活動資訊</button>
         </div>
     </div>
 
